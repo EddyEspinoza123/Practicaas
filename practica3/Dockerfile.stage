@@ -1,0 +1,19 @@
+FROM node:14-alpine as deps
+WORKDIR /app
+COPY package.json ./
+RUN npm install
+COPY . .
+
+FROM node:14-alpine as test
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+EXPOSE 5000
+CMD [ "npm", "run", "test" ]
+
+FROM node:14-alpine as prod
+WORKDIR /app
+COPY --from=test /app/node_modules ./node_modules
+COPY . .
+EXPOSE 5000
+CMD [ "node","index.js" ]
