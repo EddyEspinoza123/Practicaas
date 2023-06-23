@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Paciente {
+  id: ID!
+  name: String!
+  estado: Boolean!
+}
+
+type Query {
+  paciente(id: ID!): Paciente!
+}
+
+type Mutation {
+  createPaciente(createPacienteInput: CreatePacienteInput!): Paciente!
+  updatePaciente(updatePacienteInput: UpdatePacienteInput!): Paciente!
+  removePaciente(id: ID!): Paciente!
+}
+
+input CreatePacienteInput {
+  name: String!
+  estado: Boolean!
+}
+
+input UpdatePacienteInput {
+  name: String
+  estado: Boolean
+  id: ID!
+}
